@@ -19,5 +19,6 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    path('api/photo/', include('photos.api.urls', namespace='api-photo'))
+    path('api/album/', include('photos.api.urls-album', namespace='api-album')),
+    path('api/photo/', include('photos.api.urls-photo', namespace='api-photo'))
 ]

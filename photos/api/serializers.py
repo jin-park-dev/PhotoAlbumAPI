@@ -41,3 +41,40 @@ class PhotoCreateSerializer(serializers.ModelSerializer):
             'updated',
         ]
 
+
+class AlbumRUDSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Album
+        fields = [
+            'pk',
+            'name',
+            'description',
+        ]
+        read_only_fields = [
+            'pk',
+        ]
+
+
+class AlbumCreateSerializer(serializers.ModelSerializer):
+    image = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Album
+        fields = [
+            'pk',
+            'name',
+            'description',
+            'image',
+        ]
+
+    def get_image(self, obj):
+        # Lets make it simple by getting first img. Later need algorithm to workout best img to return.
+        # print(self)
+        # print(type(obj))
+        # print(obj)
+
+        # request = self.context.get('request')
+        # print(request.build_absolute_uri(obj.photo_set.first().image.url))
+
+        image = "http://127.0.0.1:8000/api/photo/" + obj.photo_set.first().image.url
+        return image

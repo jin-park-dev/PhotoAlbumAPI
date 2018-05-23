@@ -1,5 +1,4 @@
-from django.urls import path
-from django.conf.urls import url
+from django.urls import path, re_path
 from django.views.static import serve
 
 
@@ -13,6 +12,5 @@ urlpatterns = [
     path('', PhotoCreateView.as_view(), name='photo-create'),
     path('<int:pk>', PhotoRUDView.as_view(), name='photo-rud'),
     path('<slug:title>', PhotoRUDView.as_view(), name='photo-img'),
-    url(r'^photo/(?P<path>.*)$', serve, {'document_root': 'photo',})
-    # re_path(r'^bio/(?P<username>\w+)/$', views.bio, name='bio'),
+    re_path(r'^photo/(?P<path>.*)$', serve, {'document_root': 'photo'}), # Need to look. URL doesn't seem to do anything here.
 ]

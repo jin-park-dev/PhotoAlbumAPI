@@ -8,7 +8,7 @@ from photos.models import Photo, Album
 # 2. Validations for data passed
 
 
-class PhotoRUDSerializer(serializers.ModelSerializer): # forms.ModelForm
+class PhotoRUDSerializer(serializers.ModelSerializer):  # forms.ModelForm
     class Meta:
         model = Photo
         fields = [
